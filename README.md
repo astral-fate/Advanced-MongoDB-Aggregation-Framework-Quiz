@@ -1,4 +1,4 @@
-Certainly! Below is the quiz with answers hidden in drop-down menus for each question:
+
 
 ### Advanced MongoDB Aggregation Framework Quiz
 
