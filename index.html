@@ -147,7 +147,7 @@
     const questions = [
       {
         question: "Which of the following code snippets groups the documents in the 'employee' collection by both department number and gender, and then calculates the total salary for each combination of department and gender?",
-        code: `db.employee.aggregate([{$group : {_id :{dno_id: "$dno", gender_id:"$gender"}, totalSalary: {$sum: "$salary" }}])]`,
+       
         options: [
           'db.employee.aggregate([{$group : {_id :"$dno", gender_id:"$gender",totalSalary: {$sum: "$salary" }}])]',
           'db.employee.aggregate([{$group : {_id :{dno_id: "$dno", gender_id:"$gender"}, totalSalary: {$sum: "$salary" }}])]',
