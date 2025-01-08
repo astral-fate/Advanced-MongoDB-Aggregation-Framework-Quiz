@@ -28,7 +28,7 @@
    - Question: Which of the provided code snippets performs a grouping operation on the "employee" collection by department number, calculates the count of employees in each department, and filters the results to retain only departments with more than 4 employees?
 
    - Options:
-     - a) `db.employee.aggregate([$group: {_id:"$dno",count:[$sum:1]}){$,$match:[sum: {sgt:4} }])`
+     - a) `db.employee.aggregate([$group: {_id:"$dno",count:[$sum:1]}){$match:[sum: {sgt:4} }])`
    
 
   - b) `db.employee.aggregate([$match:[count:[$gt:4]}]{$,$group: {_id:"$dno",count: {ssum:1}]})`
@@ -38,10 +38,10 @@
 
      - d) None of the above
 
-   - Correct Answer: c) ``db.employee.aggregate([{$group: {_id:"$Sdno",count:{$sum:1}}},{$match:{count: {$gt:4} }} ])`
+   - Correct Answer: c) `db.employee.aggregate([{$group: {_id:"$Sdno",count:{$sum:1}}},{$match:{count: {$gt:4} }} ])`
 
 
-4. **IMG-20250108-WA0006.jpg**
+4. 
    - Question: Which of the following code calculates the average salary of employees in department 10?
 
    - Options:
@@ -56,7 +56,7 @@
 
 `db.employee.aggregate([$match: {'dno":10} }, {$group:{'_id':null, averageSalary:{ $avg:"$salary"}}} ]);`
 
-5. **IMG-20250108-WA0007.jpg**
+5. 
    - Question: Which of the following is a valid MongoDB statement?
    - Options:
      - a) `db.employee.createIndex({'ssn':1, name:'ssn1')`
@@ -66,7 +66,7 @@
 
    - Correct Answer: b) `db.department.createIndex{'dnumber':1,unique:true}`
 
-6. **IMG-20250108-WA0008.jpg**
+6. 
    - Question: Among the provided code snippets, which one groups the documents in the employee collection by department number and calculates the count of employees in each department?
    - Options:
      - a) `db.employee.aggregate([{$group: { '_id': "$dno", emp:{$count : emp} }}}])`
