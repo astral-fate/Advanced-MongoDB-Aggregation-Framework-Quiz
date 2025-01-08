@@ -1,17 +1,17 @@
-Certainly! Below is the extracted and formatted text from the images, along with the correct answers:
 
-1. **IMG-20250108-WA0003.jpg**
+
+1.
    - Question: Which of the following is a valid MongoDB statement?
    - Options:
      - a) `db.employee.find({'dno': 8}, {'Iname':1,'salary':1}).sort{'salary':asc}}`
 
      - b) `db.employee.find({ $and:['dno': 8},{'gender':'m'] },{_id':0, 'dno':1}.limit(30)`
 
-     - c) `db.employee.find({'_id':{$ite:14}},{'_id':0,'ssn':1}.limit(4).sort{'salary':desc})`
+     - c) `db.employee.find({'_id':{$lte:14}},{'_id':0,'ssn':1}.limit(4).sort{'salary':desc})`
      - d) None of the above
    - Correct Answer: d) None of the above
 
-2. **IMG-20250108-WA0004.jpg**
+2. 
    - Question: Which of the following is not a valid MongoDB statement?
    - Options:
 
@@ -24,7 +24,7 @@ Certainly! Below is the extracted and formatted text from the images, along with
      - d) None of the above
    - Correct Answer: d) None of the above
 
-3. **IMG-20250108-WA0005.jpg**
+3. 
    - Question: Which of the provided code snippets performs a grouping operation on the "employee" collection by department number, calculates the count of employees in each department, and filters the results to retain only departments with more than 4 employees?
 
    - Options:
