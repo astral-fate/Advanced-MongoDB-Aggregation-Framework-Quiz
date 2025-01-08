@@ -150,7 +150,7 @@
         options: [
           'db.employee.find({\'dno\': 8}, { \'lname\':1,\'salary\':1}).sort({\'salary\':asc})',
           'db.employee.find({ $and:{{\'dno\': 8}},{\'gender\': \'m\'}} },{\' id\':0, \'dno\':1}).limit(30)',
-          'db.employee.find({ _id\':{$ltc:14}},{ _id\':0, \'ssn\':1}).limit(4).sort({\'salary\':desc})',
+          'db.employee.find({ _id\':{$lte:14}},{ _id\':0, \'ssn\':1}).limit(4).sort({\'salary\':desc})',
           'None of the above'
         ],
         correct: 3,
