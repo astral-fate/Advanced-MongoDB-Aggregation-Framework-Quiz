@@ -146,32 +146,8 @@
     // Quiz data
     const questions = [
       {
-        question: "Which of the following code snippets groups the documents in the 'employee' collection by both department number and gender, and then calculates the total salary for each combination of department and gender?",
-       
-        options: [
-          'db.employee.aggregate([{$group : {_id :"$dno", gender_id:"$gender",totalSalary: {$sum: "$salary" }}])]',
-          'db.employee.aggregate([{$group : {_id :{dno_id: "$dno", gender_id:"$gender"}, totalSalary: {$sum: "$salary" }}])]',
-          'db.employee.aggregate([{$group : {dno_id: "$dno", gender_id:"$gender",totalSalary: {$sum: "$salary" }}])]',
-          'None of the above'
-        ],
-        correct: 1,
-        explanation: "The correct answer is b) `db.employee.aggregate([{$group : {_id :{dno_id: \"$dno\", gender_id:\"$gender\"}, totalSalary: {$sum: \"$salary\" }}])]`."
-      },
-      {
-        question: "Which code snippet below groups the documents in the 'employee' collection by department number, computes the average salary for each department, and arranges the results in descending order based on department number?",
-     
-        options: [
-          'db.employee.aggregate([{$group:{_id:{$sort:{"_id":-1},averageSalary:{$avg:"$salary"}}}}])',
-          'db.employee.aggregate([{$sort:{"$dno":-1}, {$group:{_id:"$dno",averageSalary:{$avg:"$salary"}}}}])',
-          'db.employee.aggregate([{$group:{_id:"$dno",averageSalary:{$avg:"$salary"}}},{$sort:{"_id":-1}}])',
-          'None of the above'
-        ],
-        correct: 2,
-        explanation: "The correct answer is c) `db.employee.aggregate([{$group:{_id:\"$dno\",averageSalary:{$avg:\"$salary\"}}},{$sort:{\"_id\":-1}}])`."
-      },
-      {
         question: "Which of the following is a valid MongoDB statement?",
-         options: [
+        options: [
           'db.employee.find({\'dno\': 8}, { \'lname\':1,\'salary\':1}).sort({\'salary\':asc})',
           'db.employee.find({ $and:{{\'dno\': 8}},{\'gender\': \'m\'}} },{\' id\':0, \'dno\':1}).limit(30)',
           'db.employee.find({ _id\':{$ltc:14}},{ _id\':0, \'ssn\':1}).limit(4).sort({\'salary\':desc})',
@@ -181,48 +157,26 @@
         explanation: "The correct answer is d) None of the above."
       },
       {
-        question: "Which of the following code groups the documents in the employee collection by department number and calculates the maximum salary of each department?",
-         options: [
-          'db.employee.aggregate([ {$group : { _id : null, maxSalary: { $max: "$salary" } } ]])',
-          'db.employee.aggregate([ {$group : { _id : "$dno", maxSalary: { $max: "$salary" } } ]})',
-          'db.employee.aggregate([ {$group : { {$match: {"dno":7} }, maxSalary: { $max: "$salary" } } ]})',
-          'None of the above'
-        ],
-        correct: 1,
-        explanation: "The correct answer is b) `db.employee.aggregate([ {$group : { _id : \"$dno\", maxSalary: { $max: \"$salary\" } } ]})`."
-      },
-      {
         question: "Which of the following is not a valid MongoDB statement?",
         options: [
-          'db.sales.insertMany([{\'id\':11,\'item\':\'abc\',\'price\':10,\'quantity\':2,\'date\':new Date(2014-03-01T08:00:00Z))]);',
-          'db.people.insertOne({\'id\':2,\'ssn\':12,\'name\':\'Mohamed\',\'age\':\'20\')',
-          'db.sales.insertMany([{\'id\':19},{\'item\':\'jkl}],[{price\':5},{\'quantity\':20})];',
+          'db.sales.updateMany ({\'_id\':{$lte:14}}, {$set\':{start_date\': new Date ()}}})',
+          'db.sales.updateMany ({},{$unset:{start_date:\'\'}})',
+          'db.sales.updateMany ({\'_id\':13}, {$unset : {join_date : new Date ()}})',
+          'None of the above'
+        ],
+        correct: 3,
+        explanation: "The correct answer is d) None of the above."
+      },
+      {
+        question: "Which of the provided code snippets performs a grouping operation on the 'employee' collection by department number, calculates the count of employees in each department, and filters the results to retain only departments with more than 4 employees?",
+        options: [
+          'db.employee.aggregate([$group: {_id:"$dno",count:[$sum:1]}){$,$match:[sum: {sgt:4} }])',
+          'db.employee.aggregate([$match:[count:[$gt:4]}]{$,$group: {_id:"$dno",count: {ssum:1}]})',
+          'db.employee.aggregate([{$group: {_id:"$Sdno",count:{$sum:1}}},{$match:{count: {$gt:4} }} ])',
           'None of the above'
         ],
         correct: 2,
-        explanation: "The correct answer is c) `db.sales.insertMany([{'id':19},{'item':'jkl}],[{price':5},{'quantity':20})];`."
-      },
-      {
-        question: "Which of the following is not a valid MongoDB statement?",
-         options: [
-          'db.project.deleteOne{join_date:$exists:false}',
-          'db.sales.deleteMany{unique:true}',
-          'db.project.deleteMany{id\':$not:13}',
-          'None of the above'
-        ],
-        correct: 0,
-        explanation: "The correct answer is a) `db.project.deleteOne{join_date:$exists:false}`."
-      },
-      {
-        question: "Which of the following is not a valid MongoDB statement?",
-          options: [
-          'db.project.createIndex{ pnumber: 1, Pname: -1 } , { name: \'pno_name\' }',
-          'db.project.getAllIndexes()',
-          'db.department.dropIndex(\'dnumber_1\');',
-          'None of the above'
-        ],
-        correct: 0,
-        explanation: "The correct answer is a) `db.project.createIndex{ pnumber: 1, Pname: -1 } , { name: 'pno_name' }`."
+        explanation: "The correct answer is c) `db.employee.aggregate([{$group: {_id:\"$Sdno\",count:{$sum:1}}},{$match:{count: {$gt:4} }} ])`."
       },
       {
         question: "Which of the following code calculates the average salary of employees in department 10?",
@@ -236,15 +190,37 @@
         explanation: "The correct answer is c) `db.employee.aggregate([{$match:{\"dno\":10} },{$group:{_id:null, averageSalary: { $avg: \"Salary\"}}}])`."
       },
       {
-        question: "Which of the following is not a valid MongoDB statement?",
+        question: "Which of the following is a valid MongoDB statement?",
         options: [
-          'db.sales.updateMany ( {$or: [{_id\':{$gte:14, $lte:16}},{price:7.5}]}, { $set : {join_date : "} } )',
-          'db.sales.updateMany ( { \'_id\':{$gte:14, $lte:16} }, { $unset : {join_date : new Date()} }',
-          'db.sales.updateMany ( { \'join_date\':{$exists:True}}, {$set : {start_date: new Date()}}',
+          'db.employee.createIndex({\'ssn\':1, name:\'ssn1\'})',
+          'db.department.createIndex({\'dnumber\':1, unique:true})',
+          'db.project.createIndex({ pnumber: 1, Pname:0 })',
           'None of the above'
         ],
         correct: 1,
-        explanation: "The correct answer is b) `db.sales.updateMany ( { '_id':{$gte:14, $lte:16} }, { $unset : {join_date : new Date()} }`."
+        explanation: "The correct answer is b) `db.department.createIndex{'dnumber':1,unique:true}`."
+      },
+      {
+        question: "Among the provided code snippets, which one groups the documents in the employee collection by department number and calculates the count of employees in each department?",
+        options: [
+          'db.employee.aggregate([{$group: { \'_id\': "$dno", emp:{$count : emp} }}}])',
+          'db.employee.aggregate([{$group: { _id: "$dno", emp: {$sum:1} }} ])',
+          'db.employee.aggregate([{$group: { _id: "$dno", emp:{ {$sum:emp} } }])',
+          'None of the above'
+        ],
+        correct: 1,
+        explanation: "The correct answer is b) `db.employee.aggregate([{$group: { _id: \"$dno\", emp: {$sum:1} }} ])`."
+      },
+      {
+        question: "Which of the following is not a valid MongoDB statement?",
+        options: [
+          'db.sales.insertMany([{\'id\':11,\'item\':\'abc\',\'price\':10,\'quantity\':2,\'date\':new Date(2014-03-01T08:00:00Z))]);',
+          'db.people.insertOne({\'id\':2,\'ssn\':12,\'name\':\'Mohamed\',\'age\':\'20\')',
+          'db.sales.insertMany([{\'id\':19},{\'item\':\'jkl}],[{price\':5},{\'quantity\':20})];',
+          'None of the above'
+        ],
+        correct: 2,
+        explanation: "The correct answer is c) `db.sales.insertMany([{'id':19},{'item':'jkl}],[{price':5},{'quantity':20})];`."
       },
       {
         question: "Which of the following is a valid MongoDB statement?",
@@ -256,6 +232,138 @@
         ],
         correct: 3,
         explanation: "The correct answer is d) None of the above."
+      },
+      {
+        question: "Among the given code snippets, which one executes an aggregation operation that joins the 'employee' collection with the 'department' collection based on the 'dno' field?",
+        options: [
+          'db.employee.aggregate[{$join:{from:"department",localField:"dno",foreignField: "dnumber",as:"employee_dept"}} ])',
+          'db.employee.aggregate[{$lookup: from:"department",localField:"dno",foreignField: "dnumber", as:"employee_dept"}} ])',
+          'db.department.aggregate([{$lookup: { from:"department:dnumber", as:"employee_dept`}} ])',
+          'None of the above'
+        ],
+        correct: 1,
+        explanation: "The correct answer is b) `db.employee.aggregate[{$lookup: from:\"department\",localField:\"dno\",foreignField: \"dnumber\", as:\"employee_dept\"}} ])`."
+      },
+      {
+        question: "Which of the following code snippets groups the documents in the 'employee' collection by both department number and gender, and then calculates the total salary for each combination of department and gender?",
+        options: [
+          'db.employee.aggregate([$group:{id:"$dno",gender id:"$gender"totalSalary: {$sum:"$salary"}]]}',
+          'db.employee.aggregate([{ $group: {_id: { dno_id:"$dno",gender_id:"$gender"}, totalSalary: {$sum:"$salary"}}} ])',
+          'db.employee.aggregate([{$group:{dno_id:"$dno",gender_id:"$gender", totalSalary: {$sum:"$salary"}}} ])',
+          'None of the above'
+        ],
+        correct: 1,
+        explanation: "The correct answer is b) `db.employee.aggregate([$group:{id:[dno id:\"$dno\",gender id:\"$gender\"), totalSalary: {$sum:\"$salary\"}]]}`."
+      },
+      {
+        question: "Which of the following is not a valid MongoDB statement?",
+        options: [
+          'db.sales.updateMany ( {$or: [{id\':{$gtc:14, $ltc:16}},{price:7.5}], {$set : {join_date :"} }',
+          'db.sales.updateMany {{id\':{$gtc:14, $ltc:16}}, { $unset : {join_date : new Date()} } }',
+          'db.sales.updateMany {{join_date\':{$exists:True}}, {$set : {start_date: new Date()}}',
+          'None of the above'
+        ],
+        correct: 3,
+        explanation: "The correct answer is d) None of the above."
+      },
+      {
+        question: "Among the given code snippets, which one executes an aggregation operation that joins the 'department' collection with the 'dept_locations' collection based on the 'dnumber' field?",
+        options: [
+          'db.department.aggregate( [ { $lookup: { from: "dept_locations", localField: "dnumber", foreignField: "dnumber", as: "dept_location" } } ] )',
+          'db.dept_locations.aggregate( [ { $lookup: { from: "department", localField: "dnumber", foreignField: "dnumber", as: "dept_location" } } ] )',
+          'db.department.aggregate( [ { $lookup: { from: "dept_locations", on: "dnumber", as: "dept_location" } } ] )',
+          'None of the above'
+        ],
+        correct: 0,
+        explanation: "The correct answer is a) `db.department.aggregate( [ { $lookup: { from: \"dept_locations\", localField: \"dnumber\", foreignField: \"dnumber\", as: \"dept_location\" } } ] )`."
+      },
+      {
+        question: "Which of the following is not a valid MongoDB statement?",
+        options: [
+          'db.project.createIndex{ pnumber: 1, Pname:-1 } , { name:\'pno_name\' }',
+          'db.project.getAllIndexes()',
+          'db.department.dropIndex(\'dnumber_1\');',
+          'None of the above'
+        ],
+        correct: 1,
+        explanation: "The correct answer is b) `db.project.getAllIndexes()`."
+      },
+      {
+        question: "Which of the following is not a valid MongoDB statement?",
+        options: [
+          'db.employee.find{(\'dno\': {$ne:8}}, { \'fname\':1,\'lname\':1,\'salary\':0}).sort({\'salary\':-1})',
+          'db.employee.find({\'dno\':{$lte:8} }, {\'_id\':0,\'lname\':1,\'salary\':1}).sort(\'salary\':0})',
+          'db.employee.find(\'dno\': 8}, { \'fname\':1,\'lname\':1,\'dno\':1}).sort(\'salary\':1})',
+          'None of the above'
+        ],
+        correct: 1,
+        explanation: "The correct answer is b) `db.employee.find({'dno':{$lte:8} }, {'_id':0,'lname':1,'salary':1}).sort('salary':0})`."
+      },
+      {
+        question: "Among the given code snippets, which one executes an aggregation operation that joins the 'department' collection with the 'dept_locations' collection based on the 'dnumber' field?",
+        options: [
+          'db.department.aggregate( [ { $lookup: { from: "employee", localField: "mgrssn", foreignField: "ssn", as: "manager" } } ] )',
+          'db.department.aggregate( [ { $lookup: { from: "employee", localField: "mgrssn=ssn", as: "dept_m" } } ] )',
+          'db.employee.aggregate( [ { $lookup: { from: "department", localField: "mgrssn", foreignField: "ssn", as: "m" } } ] )',
+          'None of the above'
+        ],
+        correct: 3,
+        explanation: "The correct answer is d) None of the above."
+      },
+      {
+        question: "Which of the following is not a valid MongoDB statement?",
+        options: [
+          'db.employee.find({\'dno\':8}, {\'fname\':1,\'lname\':1,\'dno\':1,\'salary\':1\')}.sort({\'salary\':1})',
+          'db.employee.find(\'dno>8),[\'fname\':1,\'lname\':1,\'dno\':1,\'salary\':1\').sort (i\'salary\':1))',
+          'db.employee.aggregate([ { $group: { _id: "$dno", averageSalary: { $avg: "$Salary" } } }, { $sort: { _id: -1 } } ])',
+          'None of the above'
+        ],
+        correct: 1,
+        explanation: "The correct answer is b) `db.employee.find('dno>8),['fname':1,'lname':1,'dno':1,'salary':1').sort (i'salary':1))`."
+      },
+      {
+        question: "Which code snippet below groups the documents in the 'employee' collection by department number, computes the average salary for each department, and arranges the results in descending order based on department number?",
+        options: [
+          'db.employee.aggregate([ { $group:{_id:{ $sort:{"_id":-1), averageSalary:{$avg:"$Salary"}}}} ])',
+          'db.employee.aggregate([$sort:{"$dno":-1), {$group:{_id:"$dno",averageSalary:{$avg:"SSalary")}}}}]',
+          'db.employee.aggregate([ { $group: { _id: "$dno", averageSalary: { $avg: "$Salary" } } }, { $sort: { \'_id\': -1 } } ])',
+          'None of the above'
+        ],
+        correct: 2,
+        explanation: "The correct answer is c) `db.employee.aggregate([ { $group: { _id: \"$dno\", averageSalary: { $avg: \"$Salary\" } } }, { $sort: { _id: -1 } } ])`."
+      },
+      {
+        question: "Which of the given code snippets groups the 'employee' collection by department number, computes the employee count for each department, filters the results to include only departments with 5 or fewer employees, and then sorts the documents in descending order based on the employee count?",
+        options: [
+          'db.employee.aggregate([ { $group:{_id:"$dno",count:{$sum:-1});{$match:[count:${ltc:5} }},{$sort:{"count":-1}}])',
+          'db.employee.aggregate([$match:[count: { $lte:5} }},{$sort:{"count":-1}}, {$group: {_id:"$dno",count:{$sum:1}}]',
+          'db.employee.aggregate([ { $group:{_id:"$dno",count:{$sum:1} }},{$match:[count:${lte:5} }},{$sort:{"count":-1}}])',
+          'None of the above'
+        ],
+        correct: 2,
+        explanation: "The correct answer is c) `db.employee.aggregate([ { $group:{_id:\"$dno\",count:{$sum:1} }},{$match:[count:${lte:5} }},{$sort:{\"count\":-1}}])`."
+      },
+      {
+        question: "Which of the following code groups the documents in the employee collection by department number and calculates the maximum salary of each department?",
+        options: [
+          'db.employee.aggregate([{ $group : { _id : null, maxSalary: {$max: "$salary"} } }])',
+          'db.employee.aggregate([{$group : { -id : "$dno", maxSalary: {$max: "$salary"} } }])',
+          'db.employee.aggregate([{$group : { {$match: {"dno":7} }, maxSalary: {$max: "$salary"} } ])',
+          'None of the above'
+        ],
+        correct: 1,
+        explanation: "The correct answer is b) `db.employee.aggregate([{$group : { -id : \"$dno\", maxSalary: {$max: \"$salary\"} } }])`."
+      },
+      {
+        question: "Which of the following is not a valid MongoDB statement?",
+        options: [
+          'db.project.deleteOne{\'join_date\':{$exists:false}})',
+          'db.sales.deleteMany({unique\': true})',
+          'db.project.deleteMany({\'_id\':{$not:13}} )',
+          'None of the above'
+        ],
+        correct: 1,
+        explanation: "The correct answer is b) `db.sales.deleteMany{unique': true}}`."
       }
     ];
 
