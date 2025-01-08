@@ -170,13 +170,13 @@
       {
         question: "Which of the provided code snippets performs a grouping operation on the 'employee' collection by department number, calculates the count of employees in each department, and filters the results to retain only departments with more than 4 employees?",
         options: [
-          'db.employee.aggregate([$group: {_id:"$dno",count:[$sum:1]}){$,$match:[sum: {sgt:4} }])',
-          'db.employee.aggregate([$match:[count:[$gt:4]}]{$,$group: {_id:"$dno",count: {ssum:1}]})',
-          'db.employee.aggregate([{$group: {_id:"$Sdno",count:{$sum:1}}},{$match:{count: {$gt:4} }} ])',
+          'db.employee.aggregate([$group: {_id:"$dno",count:[$sum:1]}){$,$match:[sum: {$gt:4} }])',
+          'db.employee.aggregate([$match:[count:[$gt:4]}]{$group: {_id:"$dno",count: {ssum:1}]})',
+          'db.employee.aggregate([{$group: {_id:"$dno",count:{$sum:1}}},{$match:{count: {$gt:4} }} ])',
           'None of the above'
         ],
         correct: 2,
-        explanation: "The correct answer is c) `db.employee.aggregate([{$group: {_id:\"$Sdno\",count:{$sum:1}}},{$match:{count: {$gt:4} }} ])`."
+        explanation: "The correct answer is c) `db.employee.aggregate([{$group: {_id:\"$dno\",count:{$sum:1}}},{$match:{count: {$gt:4} }} ])`."
       },
       {
         question: "Which of the following code calculates the average salary of employees in department 10?",
